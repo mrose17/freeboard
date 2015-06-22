@@ -753,15 +753,17 @@
         var indicatorElement = $('<div class="indicator-light"></div>');
         var currentSettings = settings;
         var isOn = false;
+        var onText = "ON";
+        var offText = "ON";
 
         function updateState() {
             indicatorElement.toggleClass("on", isOn);
 
             if (isOn) {
-                stateElement.text((_.isUndefined(currentSettings.on_text) ? "" : currentSettings.on_text));
+                stateElement.text((onText));
             }
             else {
-                stateElement.text((_.isUndefined(currentSettings.off_text) ? "" : currentSettings.off_text));
+                stateElement.text((offText));
             }
         }
 
@@ -778,6 +780,12 @@
         this.onCalculatedValueChanged = function (settingName, newValue) {
             if (settingName == "value") {
                 isOn = Boolean(newValue);
+            }
+            else if (settingName === "on_text") {
+                onText = newValue
+            }
+            else if (settingName === "off_text") {
+                offTtext = newValue
             }
 
             updateState();

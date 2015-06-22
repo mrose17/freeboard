@@ -760,10 +760,10 @@
             indicatorElement.toggleClass("on", isOn);
 
             if (isOn) {
-                stateElement.text((onText));
+                stateElement.text(onText);
             }
             else {
-                stateElement.text((offText));
+                stateElement.text(offText);
             }
         }
 

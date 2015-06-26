@@ -754,17 +754,12 @@
         var currentSettings = settings;
         var isOn = false;
         var onText = "ON";
-        var offText = "ON";
+        var offText = "OFF";
 
         function updateState() {
             indicatorElement.toggleClass("on", isOn);
 
-            if (isOn) {
-                stateElement.text(onText);
-            }
-            else {
-                stateElement.text(offText);
-            }
+            stateElement.text(isOn ? onText : offText);
         }
 
         this.render = function (element) {
@@ -785,7 +780,7 @@
                 onText = newValue
             }
             else if (settingName === "off_text") {
-                offTtext = newValue
+                offText = newValue
             }
 
             updateState();

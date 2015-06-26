@@ -1401,16 +1401,13 @@ freeboard.loadDatasourcePlugin({
         var indicatorElement = $('<div class="indicator-light"></div>');
         var currentSettings = settings;
         var isOn = false;
+        var onText = "ON";
+        var offText = "OFF";
 
         function updateState() {
             indicatorElement.toggleClass("on", isOn);
 
-            if (isOn) {
-                stateElement.text((_.isUndefined(currentSettings.on_text) ? "" : currentSettings.on_text));
-            }
-            else {
-                stateElement.text((_.isUndefined(currentSettings.off_text) ? "" : currentSettings.off_text));
-            }
+            stateElement.text(isOn ? onText : offText);
         }
 
         this.render = function (element) {
@@ -1426,6 +1423,12 @@ freeboard.loadDatasourcePlugin({
         this.onCalculatedValueChanged = function (settingName, newValue) {
             if (settingName == "value") {
                 isOn = Boolean(newValue);
+            }
+            else if (settingName === "on_text") {
+                onText = newValue
+            }
+            else if (settingName === "off_text") {
+                offText = newValue
             }
 
             updateState();
